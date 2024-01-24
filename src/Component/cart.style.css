@@ -1,36 +1,27 @@
 .card {
   width: 200px;
-  height: 210px;
+  height: 220px;
   border-radius: 10px;
-
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-bottom: 20px; /* Add some spacing between cards */
 }
+
 .cards-container {
-  margin: 20px;
-  padding-top: 50pz;
-  padding: 30px;
+  margin: 10px;
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
 }
+
 .card:hover {
   background: rgb(204, 235, 245);
   border: 1px solid black;
 }
-.cart-button {
-  position: fixed;
-  top: 5%;
-  right: 5%;
-  padding: 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.add-to-cart-button {
-  background-color: #2196f3;
+
+button {
+  background-color: #e74c3c;
   color: white;
   padding: 8px 16px;
   border: none;
@@ -38,6 +29,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.add-to-cart-button:hover {
-  background-color: #0b7dda;
+
+button:hover {
+  background-color: #c0392b;
 }

@@ -1,15 +1,14 @@
-import axios from "axios";
 import React, { useEffect } from "react";
 import "./profile.style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../redux/userSlice";
 import { add, remove } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function UserProfile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const [usersData, setUsersData] = useState([]);
   const users = useSelector((state) => state.Users);
   const cart = useSelector((state) => state.Carts);
 
@@ -20,13 +19,11 @@ function UserProfile() {
   async function getUsers() {
     try {
       const res = await axios.get(`https://jsonplaceholder.typicode.com/users`);
-      // setUsersData(res.data);
       dispatch(fetchUser(res.data));
-      console.log(res.data);
     } catch (error) {}
   }
 
-  function handleAddCart(user, index) {
+  function handleAddCart(user) {
     const isAlreadyAdded = cart.some((cartItem) => cartItem.id === user.id);
     if (!isAlreadyAdded) {
       dispatch(add(user));
@@ -34,13 +31,14 @@ function UserProfile() {
       dispatch(remove({ id: user.id }));
     }
   }
+
   function gotoCart() {
     navigate("/cart");
   }
-  console.log(users);
+
   return (
     <div>
-      <button onClick={gotoCart}>
+      <button className="cart-button" onClick={gotoCart}>
         Cart<sup>{cart.length}</sup>
       </button>
       <div className="cards-container">
@@ -53,7 +51,10 @@ function UserProfile() {
               <p>Phone:{item.phone}</p>
               <p>City:{item.address.city}</p>
               <p>Company:{item.company.name}</p>
-              <button onClick={() => handleAddCart(item)}>
+              <button
+                className="add-to-cart-button"
+                onClick={() => handleAddCart(item)}
+              >
                 {cart.some((user) => user.id === item.id) ? (
                   <>Remove</>
                 ) : (
